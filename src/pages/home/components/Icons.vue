@@ -15,64 +15,20 @@
 <script>
   export default {
     name: "icon",
+    props:{
+      list:Array
+    },
     data() {
       return {
         swiperOption: {
         autoplay: false
-      },
-        iconList: [
-          {
-            id: 1,
-            imgUrl: "https://source.qunarzz.com/visa/flag/JPN.gif",
-            desc: "日本"
-          },
-          {
-            id: 2,
-            imgUrl: "https://source.qunarzz.com/visa/flag/JPN.gif",
-            desc: "日本"
-          },
-          {
-            id: 3,
-            imgUrl: "https://source.qunarzz.com/visa/flag/JPN.gif",
-            desc: "日本"
-          },
-          {
-            id: 4,
-            imgUrl: "https://source.qunarzz.com/visa/flag/JPN.gif",
-            desc: "日本"
-          },
-          {
-            id: 5,
-            imgUrl: "https://source.qunarzz.com/visa/flag/JPN.gif",
-            desc: "日本"
-          },
-          {
-            id: 6,
-            imgUrl: "https://source.qunarzz.com/visa/flag/JPN.gif",
-            desc: "日本"
-          },
-          {
-            id: 7,
-            imgUrl: "https://source.qunarzz.com/visa/flag/JPN.gif",
-            desc: "日本"
-          },
-          {
-            id: 8,
-            imgUrl: "https://source.qunarzz.com/visa/flag/JPN.gif",
-            desc: "日本"
-          },
-          {
-            id: 9,
-            imgUrl: "https://source.qunarzz.com/visa/flag/JPN.gif",
-            desc: "日本"
-          }
-        ]
+      }
       };
     },
     computed: {
       pages() {
           const pages = []
-          this.iconList.forEach((item,index) => {
+          this.list.forEach((item,index) => {
             const page = Math.floor(index/8)
             if(!pages[page]){
                 pages[page] = []

@@ -1,24 +1,23 @@
 <template>
   <swiper :options="swiperOption" ref="mySwiper" class="swiper">
     <!-- slides -->
-    <swiper-slide v-for="item of swiperList" :key="item.id"> <img :src="item.imgUrl" class="swiper-img" /> </swiper-slide>
+    <swiper-slide v-for="item of list" :key="item.id"> <img :src="item.imgUrl" class="swiper-img" /> </swiper-slide>
   </swiper>
 </template>
 
 <script>
   export default {
     name: "carrousel",
+      props:{
+        list:Array
+      },
     data() {
       return {
         swiperOption: {
           // some swiper options/callbacks
           // 所有的参数同 swiper 官方 api 参数
           // ...
-        },
-        swiperList:[
-          {id:1,imgUrl:'https://imgs.qunarzz.com/vc/42/26/bb/71d41bf5d04fcb589ece936cba.jpg_92.jpg'},
-          {id:2,imgUrl:'https://imgs.qunarzz.com/vc/42/26/bb/71d41bf5d04fcb589ece936cba.jpg_92.jpg'}
-      ]
+        }
       };
     },
     computed: {

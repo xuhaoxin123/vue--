@@ -9,7 +9,7 @@
     </div>
 
       <div class="header-right">
-        北京
+        {{city}}
         <span class="iconfont arrow-icon">&#xe64a;</span>
       </div>
   </div>
@@ -17,7 +17,10 @@
 
 <script>
   export default {
-    name: "HomeHeader"
+    name: "HomeHeader",
+    props: {
+      city:String
+    }
   };
 </script>
 <style lang="scss" scoped>
