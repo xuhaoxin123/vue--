@@ -4,7 +4,7 @@
       <div class="area">
         <div class="title border-topbottom">当前城市</div>
         <div class="button-list">
-          <div class="button-wrapper"><div class="button">asdasd</div></div>
+          <div class="button-wrapper"><div class="button">北京</div></div>
         </div>
       </div>
       <div class="area">
@@ -14,9 +14,8 @@
             class="button-wrapper"
             v-for="item of hot"
             :key="item.id"
-            @click="handleCityClick(item.name)"
           >
-            <div class="button">sdaasdsa</div>
+            <div class="button">{{item.name}}</div>
           </div>
         </div>
       </div>
@@ -41,12 +40,17 @@
   import Bscroll from "better-scroll";
   export default {
     name: "CityList",
+    props: {
+      hot: Array,
+      cities:Object
+
+    },
     data() {
       return {};
     },
-    mounted () {
-    this.scroll = new Bscroll(this.$refs.wrapper)
-  }
+    mounted() {
+      this.scroll = new Bscroll(this.$refs.wrapper);
+    }
   };
 </script>
 
