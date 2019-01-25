@@ -10,12 +10,8 @@
       <div class="area">
         <div class="title border-topbottom">热门城市</div>
         <div class="button-list">
-          <div
-            class="button-wrapper"
-            v-for="item of hot"
-            :key="item.id"
-          >
-            <div class="button">{{item.name}}</div>
+          <div class="button-wrapper" v-for="item of hot" :key="item.id">
+            <div class="button">{{ item.name }}</div>
           </div>
         </div>
       </div>
@@ -26,7 +22,6 @@
             class="item border-bottom"
             v-for="innerItem of item"
             :key="innerItem.id"
-            @click="handleCityClick(innerItem.name)"
           >
             {{ innerItem.name }}
           </div>
@@ -42,14 +37,23 @@
     name: "CityList",
     props: {
       hot: Array,
-      cities:Object
-
+      cities: Object,
+      letter: String
     },
     data() {
       return {};
     },
     mounted() {
       this.scroll = new Bscroll(this.$refs.wrapper);
+    },
+    watch: {
+      letter() {
+        if (this.letter) {
+          const element = this.$refs[this.letter][0];
+          console.log(element)
+          this.scroll.scrollToElement(element)
+        }
+      }
     }
   };
 </script>
