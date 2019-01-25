@@ -1,11 +1,17 @@
 <template>
   <ul class="list">
     <li
-    class="item"
-    v-for="(item, key ) of cities"
-     :key="key"
-    @click="handleLetterClick"
-    >{{key}}</li>
+      class="item"
+      v-for="item of letters"
+      :key="item"
+      @click="handleLetterClick"
+      @touchstart="handleTouchStart"
+      @touchmove="handleTouchMove"
+      @touchend="handleTouchEnd"
+      :ref="item"
+    >
+      {{ item }}
+    </li>
   </ul>
 </template>
 
@@ -16,12 +22,49 @@
       cities: Object
     },
     data() {
-      return {};
+      return {
+        touchStatus: false,
+        startY: 0,
+        timer:null
+      };
     },
-    methods:{
-      handleLetterClick(e){
-        this.$emit('change', e.target.innerText)
-        console.log(e.target.innerText)
+    computed: {
+      letters() {
+        const letters = [];
+        for (let i in this.cities) {
+          letters.push(i);
+        }
+        console.log(letters);
+        return letters;
+      }
+    },
+    updated() {
+      this.startY = this.$refs["A"][0].offsetTop;
+    },
+    methods: {
+      handleLetterClick(e) {
+        this.$emit("change", e.target.innerText);
+        console.log(e.target.innerText);
+      },
+      handleTouchStart() {
+        this.touchStatus = true;
+      },
+      handleTouchMove(e) {
+        if (this.touchStatus) {
+          if (this.timer) {
+            clearTimeout(this.timer);
+          }
+          this.timer = setTimeout(() => {
+            const touchY = e.touches[0].clientY - 79;
+            const index = Math.floor((touchY - this.startY) / 20);
+            if (index >= 0 && this.letters.length) {
+              this.$emit("change", this.letters[index]);
+            }
+          }, 16);
+        }
+      },
+      handleTouchEnd() {
+        this.touchStatus = false;
       }
     }
   };

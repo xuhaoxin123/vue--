@@ -22,6 +22,7 @@
             class="item border-bottom"
             v-for="innerItem of item"
             :key="innerItem.id"
+
           >
             {{ innerItem.name }}
           </div>

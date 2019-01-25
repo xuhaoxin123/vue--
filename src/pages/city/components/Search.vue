@@ -13,7 +13,12 @@
 
 <script>
   export default {
-    name: "CitySearch"
+    name: "CitySearch",
+    data() {
+      return {
+        keyword:''
+      };
+    }
   };
 </script>
 
